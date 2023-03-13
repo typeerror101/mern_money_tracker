@@ -5,7 +5,7 @@ const TransactionSchema = new  Schema({
     name : {type: String, required: true},
     description : {type: String, required: true},
     datetime : {type: Date, required: true},
-    price : {type: String}
+    price : {type: Number}
 });
 
 const TransactionModel = model('Transaction', TransactionSchema);
