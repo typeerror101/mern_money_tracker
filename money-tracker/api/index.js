@@ -13,11 +13,12 @@ app.get('/api/test', (req,res) => {
     res.json('test ok5');
 });
 
-app.post('/api/transaction', (req,res) => {
-   console.log(process.env.MONGO_URL);
-    // mongoose.connect('process.env.MONGO_URL');
-    const {name,description,datetime} = req.body;
-    res.json(req.body);
+app.post('/api/transaction', async (req,res) => {
+    await mongoose.connect('mongodb+srv://typeerror101:AFVkIRhFShUNnmOP@cluster0.kvzzm05.mongodb.net/?retryWrites=true&w=majority');
+    const {name, description, datetime, price} = req.body;
+    const transaction = Transaction.create({name, description, datetime, price});
+
+    res.json(transaction);
 })
 
 app.listen(port);

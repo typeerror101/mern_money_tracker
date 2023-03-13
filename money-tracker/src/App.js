@@ -8,6 +8,7 @@ function App() {
   const [name, setName] = useState('');
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
+  const price = name.split(' ')[0];
 
 
   function addNewTransaction(ev){
@@ -17,9 +18,18 @@ function App() {
     fetch(url, {
       method: 'POST',
       headers: {'Content-type':'application/json'},
-      body: JSON.stringify({name,description,datetime})
+      body: JSON.stringify({
+        price,
+        name: name.substring(price.length+1),
+        description,
+        datetime,
+      })
     }).then(response =>{
       response.json().then(json => {
+        setDatetime('');
+        setDescription('');
+        setName('');
+        
         console.log('result',json);
       });
     });
@@ -27,13 +37,13 @@ function App() {
 
   return (
     <main>
-      <h1>400<span>.00</span></h1>
+      <h1>$400<span>.00</span></h1>
       <form onSubmit={addNewTransaction}>
         <div className="basic">
           <input 
           value={name} 
           onChange={ev => setName(ev.target.value)} 
-          type="text" placeholder='Item name'
+          type="text" placeholder='+30$ Item name'
 
           />
           <input 
