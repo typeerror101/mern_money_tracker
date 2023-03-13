@@ -19,17 +19,17 @@ function App() {
       method: 'POST',
       headers: {'Content-type':'application/json'},
       body: JSON.stringify({
-        price,
         name: name.substring(price.length+1),
         description,
         datetime,
+        price,
       })
     }).then(response =>{
       response.json().then(json => {
         setDatetime('');
         setDescription('');
         setName('');
-        
+
         console.log('result',json);
       });
     });
