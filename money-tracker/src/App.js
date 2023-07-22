@@ -68,13 +68,13 @@ function App() {
           value={name} 
           onChange={ev => setName(ev.target.value)} 
           type="text" placeholder='+30₹ Item name'
-
+          required
           />
           <input 
           value={datetime}
           onChange={ev => setDatetime(ev.target.value)}
           type="datetime-local" 
-
+          required  
           />
         </div>
         <div className='description'>
@@ -83,6 +83,7 @@ function App() {
           onChange={ev => setDescription(ev.target.value)}
           type="text" 
           placeholder='description'
+          required
           />
         </div>
         <button type='submit'>Add</button>
